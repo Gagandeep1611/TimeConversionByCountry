@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Time Conversion</title>
+</head>
+<body>
+  <h1> Time Conversion </h1>
+  <form action="/submit" method="post">
+      <select id="timezoneFrom" name="FromTimezone">
+          <option value="" disabled selected>Select your Timezone</option>
+          <option th:each="tz : ${timezones}" th:value="${tz}" th:text="${tz}"></option>
+      </select>
+      <select id="timezoneTo" name="ToTimezone">
+          <option value="" disabled selected>Select the target time zone</option>
+          <option th:each="tz : ${timezones}" th:value="${tz}" th:text="${tz}"></option>
+      </select>
+      <button type="submit">Submit</button>
+  </form>
+</body>
+</html>
