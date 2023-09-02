@@ -28,10 +28,11 @@ public class HomeController {
     public String submitForm(
             @RequestParam("FromTimezone") String FromTimezone,
             @RequestParam("ToTimezone") String ToTimezone,
+            @RequestParam("time") String time,
             Model model) {
         // Use the selectedTimezone variable in your controller logic
-        model.addAttribute("FromTimezone", FromTimezone);
-        model.addAttribute("ToTimezone", ToTimezone);
+        String convertedTime=timeZoneService.convertTime(FromTimezone,ToTimezone,time);
+        System.out.println("Converted Time: "+ convertedTime);
         return "resultPage"; // Return the name of the result page (resultPage.html)
     }
 
