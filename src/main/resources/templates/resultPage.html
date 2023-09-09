@@ -1,9 +1,61 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <!-- Your HTML head content here -->
+    <meta charset="UTF-8">
+    <title>Time Conversion Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .result-container {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        p {
+            text-align: center;
+            font-size: 24px;
+            color: #007BFF;
+            margin-bottom: 20px;
+        }
+
+        .back-button {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .back-button a {
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+        }
+
+        .back-button a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-<h1>Converted Time:<p th:text="${convertedTime}"></p></h1>
+<h1>Converted Time:</h1>
+<div class="result-container">
+    <p th:text="${convertedTime}"></p>
+</div>
+<div class="back-button">
+    <a href="/form">Back to Form</a>
+</div>
 </body>
 </html>
