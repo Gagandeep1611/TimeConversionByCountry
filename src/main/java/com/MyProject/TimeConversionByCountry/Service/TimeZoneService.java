@@ -17,8 +17,13 @@ import java.util.TimeZone;
 public class TimeZoneService {
     public List<String> getAllTimezones() {
         String[] timezoneIds = TimeZone.getAvailableIDs();
-        return Arrays.asList(timezoneIds);
+
+        // Exclude the last 28 entries
+        String[] truncatedTimezones = Arrays.copyOfRange(timezoneIds, 0, timezoneIds.length - 28);
+
+        return Arrays.asList(truncatedTimezones);
     }
+
 
     public String convertTime(String fromTimezone, String toTimezone, String inputTime) {
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
