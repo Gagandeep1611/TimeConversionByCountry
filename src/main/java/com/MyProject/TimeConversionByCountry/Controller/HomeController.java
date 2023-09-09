@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -33,6 +32,7 @@ public class HomeController {
         // Use the selectedTimezone variable in your controller logic
         String convertedTime=timeZoneService.convertTime(FromTimezone,ToTimezone,time);
         System.out.println("Converted Time: "+ convertedTime);
+        model.addAttribute("convertedTime", convertedTime);
         return "resultPage"; // Return the name of the result page (resultPage.html)
     }
 

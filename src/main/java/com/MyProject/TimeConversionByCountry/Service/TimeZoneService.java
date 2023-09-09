@@ -4,6 +4,10 @@ import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -16,28 +20,27 @@ public class TimeZoneService {
         return Arrays.asList(timezoneIds);
     }
 
-    public String convertTime(String fromTimezone, String toTimezone, String time) {
+    public String convertTime(String fromTimezone, String toTimezone, String inputTime) {
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+
         try {
-            // Create SimpleDateFormat instances for parsing and formatting
-            SimpleDateFormat inputFormat = new SimpleDateFormat("HH:mm");
-            SimpleDateFormat outputFormat = new SimpleDateFormat("HH:mm");
+            // Parse the input time
+            LocalTime localTime = LocalTime.parse(inputTime, timeFormatter);
 
-            // Set the time zones for parsing and formatting
-            inputFormat.setTimeZone(TimeZone.getTimeZone(fromTimezone));
-            outputFormat.setTimeZone(TimeZone.getTimeZone(toTimezone));
+            // Convert input time to ZonedDateTime in the 'fromTimeZone'
+            ZoneId fromZone = ZoneId.of(fromTimezone);
+            ZonedDateTime fromDateTime = ZonedDateTime.now(fromZone).with(localTime);
 
-            // Parse the input time string into a Date object
-            Date date = inputFormat.parse(time);
+            // Convert ZonedDateTime to the 'toTimeZone'
+            ZoneId toZone = ZoneId.of(toTimezone);
+            ZonedDateTime toDateTime = fromDateTime.withZoneSameInstant(toZone);
 
-            // Format the Date object to the target time zone
-            String convertedTime = outputFormat.format(date);
-
-
+            // Format the result time
+            String convertedTime = toDateTime.toLocalTime().format(timeFormatter);
 
             return convertedTime;
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return "Invalid input time format.";
+        } catch (Exception e) {
+            return "Invalid input or timezone format.";
         }
     }
 }

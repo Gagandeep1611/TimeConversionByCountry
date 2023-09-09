@@ -5,19 +5,19 @@
     <title>Time Conversion</title>
 </head>
 <body>
-  <h1> Time Conversion </h1>
-  <form action="/submit" method="post">
-      <select id="timezoneFrom" name="FromTimezone">
-          <option value="" disabled selected>Select your Timezone</option>
-          <option th:each="tz : ${timezones}" th:value="${tz}" th:text="${tz}"></option>
-      </select>
-      <select id="timezoneTo" name="ToTimezone">
-          <option value="" disabled selected>Select the target time zone</option>
-          <option th:each="tz : ${timezones}" th:value="${tz}" th:text="${tz}"></option>
-      </select><br>
-      <label for="timeInput">Time (hh:mm):</label>
-      <input type="time" id="timeInput" name="time" pattern="[0-9]{2}:[0-9]{2}" required>
-      <button type="submit">Submit</button>
-  </form>
+<h1> Time Conversion </h1>
+<form action="/submit" method="post">
+    <select id="timezoneFrom" name="FromTimezone">
+        <option value="" disabled selected>Select your Timezone</option>
+        <option th:each="tz : ${timezones}" th:value="${tz}" th:text="${tz}"></option>
+    </select>
+    <select id="timezoneTo" name="ToTimezone">
+        <option value="" disabled selected>Select the target time zone</option>
+        <option th:each="tz : ${timezones}" th:value="${tz}" th:text="${tz}"></option>
+    </select><br>
+    <label for="timeInput">Time (hh:mm):</label>
+    <input type="time" id="timeInput" name="time" pattern="[0-9]{2}:[0-9]{2}" required>
+    <button type="submit">Submit</button>
+</form>
 </body>
 </html>
